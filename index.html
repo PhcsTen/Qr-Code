@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8">
+  <title>สร้าง QR Code</title>
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
+  <style>
+    body {
+      font-family: 'Sarabun', sans-serif;
+      background: #fce4ec;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px;
+    }
+
+    h2 {
+      color: #333;
+    }
+
+    p {
+      color: #333;
+    }
+
+    .container {
+      background: #ff99cc;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      max-width: 400px;
+      width: 100%;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      width: 80%;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-bottom: 15px;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    #qrcode {
+      margin-top: 20px;
+      padding: 10px;
+      background: #fff;
+      display: inline-block;
+      border: 2px dashed #ccc;
+      border-radius: 10px;
+    }
+
+    .instructions {
+      position: fixed;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255, 255, 255, 0.8);
+      padding: 10px 20px;
+      border-radius: 20px;
+      font-size: 3vw;
+      max-width: 90%;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .footer {
+      margin: 10px;
+      font-size: 0.9em;
+      color: #888;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="instructions">สร้าง QR Code ออนไลน์ (ฟรี)</div>
+  <br><br>
+  <p>นักวิชาการคอมพิวเตอร์ รุ่น 5</p>
+  <div class="container">
+    <input type="text" id="text" placeholder="ใส่ข้อความหรือ URL ที่นี่">
+    <br>
+    <div id="qrcode"></div>
+    <br>
+    <button onclick="generateQRCode()">สร้าง QR Code</button>
+  </div>
+  <br>
+  <div class="footer"> © 2025 | ทำเล่นๆ แต่จริงจัง</div>
+
+  <script>
+    function generateQRCode() {
+      const container = document.getElementById("qrcode");
+      container.innerHTML = ""; // เคลียร์ QR เดิม
+      const text = document.getElementById("text").value.trim();
+      if (!text) {
+        alert("กรุณาใส่ข้อความก่อน");
+        return;
+      }
+
+      new QRCode(container, {
+        text: text,
+        width: 200,
+        height: 200,
+        colorDark: "#000000",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.H
+      });
+    }
+  </script>
+
+</body>
+
+</html>
